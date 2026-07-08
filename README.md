@@ -1,98 +1,111 @@
-# MK Sigorta - Sigortacılık Web Sitesi
+# MK Sigorta Web Uygulaması
 
-Modern ve kullanıcı dostu sigortacılık web platformu.
+Antalya'da sigorta hizmetleri sunan modern ve güvenilir web uygulaması.
 
-## 🚀 Teknolojiler
-
-- **Frontend**: Next.js 14, React 18, TypeScript, Tailwind CSS
-- **Backend**: Next.js API Routes
-- **Veritabanı**: Supabase (PostgreSQL)
-- **Barındırma**: Vercel
-- **Domain**: mksigorta.dev
-
-## 📋 Özellikler
-
-- ✅ Sigorta ürün kataloğu
-- ✅ Online teklif sistemi
-- ✅ Müşteri hesapları (Giriş/Kayıt)
-- ✅ Admin paneli
-- ✅ Hızlı iletişim formu
-- ✅ Tüm sigorta türleri (Sağlık, Araç, Ev, İş, Seyahat, vb.)
-- ✅ Türkçe dil desteği
-
-## 🛠️ Kurulum
+## 🚀 Başlarken
 
 ### Gereksinimler
 - Node.js 18+
 - npm veya yarn
+- Supabase hesabı
 
-### Adımlar
+### Kurulum
 
-1. **Repository'yi klonlayın**
 ```bash
-git clone https://github.com/icra2121-dev/mk-sigorta-web.git
+# Depoyu klonla
+git clone https://github.com/yourusername/mk-sigorta-web.git
 cd mk-sigorta-web
-```
 
-2. **Bağımlılıkları yükleyin**
-```bash
+# Bağımlılıkları yükle
 npm install
-```
 
-3. **`.env.local` dosyasını oluşturun**
-```bash
+# .env.local dosyası oluştur
 cp .env.example .env.local
-```
 
-4. **Supabase ayarlarını yapılandırın**
-   - [Supabase](https://supabase.com) hesabı oluşturun
-   - Yeni proje oluşturun
-   - API anahtarlarını `.env.local` dosyasına ekleyin
+# Supabase kimlik bilgilerini ekle
+# NEXT_PUBLIC_SUPABASE_URL
+# NEXT_PUBLIC_SUPABASE_ANON_KEY
+# SUPABASE_SERVICE_ROLE_KEY
 
-5. **Veritabanını hazırlayın**
-```bash
-# Supabase dashboard'dan SQL sorgusu çalıştırın
-# (sql/schema.sql dosyasına bakın)
-```
-
-6. **Geliştirme sunucusunu başlatın**
-```bash
+# Geliştirme sunucusunu başlat
 npm run dev
 ```
 
-Tarayıcınızda açın: `http://localhost:3000`
+### Tarayıcıda Aç
+[http://localhost:3000](http://localhost:3000)
 
 ## 📁 Proje Yapısı
 
 ```
-├── app/                    # Next.js App Router
-├── components/             # React bileşenleri
-├── pages/                  # API routes
-├── lib/                    # Yardımcı fonksiyonlar
-├── types/                  # TypeScript tipleri
-├── public/                 # Statik dosyalar
-├── sql/                    # Veritabanı şemaları
-└── README.md
+mk-sigorta-web/
+├── app/                    # Next.js sayfa ve layout'ları
+│   ├── layout.tsx         # Ana layout
+│   ├── page.tsx           # Anasayfa
+│   ├── products/          # Ürünler sayfası
+│   ├── quote/             # Teklif sayfası
+│   ├── contact/           # İletişim sayfası
+│   ├── dashboard/         # Kullanıcı paneli
+│   ├── login/             # Giriş sayfası
+│   ├── register/          # Kayıt sayfası
+│   ├── forgot-password/   # Şifre sıfırlama
+│   ├── about/             # Hakkında sayfası
+│   ├── terms/             # Kullanım şartları
+│   ├── privacy/           # Gizlilik politikası
+│   └── globals.css        # Global stiller
+├── components/            # Yeniden kullanılabilir bileşenler
+│   ├── Header.tsx         # Başlık
+│   ├── Footer.tsx         # Altbilgi
+│   └── DashboardNav.tsx   # Dashboard navigasyon
+├── lib/                   # Yardımcı fonksiyonlar
+│   ├── supabase.ts        # Supabase istemcisi
+│   └── api.ts             # API fonksiyonları
+├── types/                 # TypeScript tür tanımları
+│   └── index.ts           # Tüm tipler
+├── sql/                   # Veritabanı şemaları
+│   └── schema.sql         # PostgreSQL şeması
+├── public/                # Statik dosyalar
+├── .env.example           # Ortam değişkenleri örneği
+├── package.json           # Proje bağımlılıkları
+├── tsconfig.json          # TypeScript yapılandırması
+├── tailwind.config.js     # Tailwind CSS yapılandırması
+├── postcss.config.js      # PostCSS yapılandırması
+└── README.md              # Bu dosya
 ```
+
+## 🛠️ Kullanılan Teknolojiler
+
+- **Next.js 14** - React framework
+- **TypeScript** - Tip güvenliği
+- **Tailwind CSS** - Stil framework'ü
+- **Supabase** - Backend ve veritabanı
+- **React Hook Form** - Form yönetimi
+- **Zod** - Schema validasyon
+- **Lucide React** - İkonlar
+
+## 📋 Özellikler
+
+- ✅ Anasayfa ve ürün listesi
+- ✅ Teklif sistemi
+- ✅ Kullanıcı kimlik doğrulama (signup/login)
+- ✅ Kullanıcı paneli (dashboard)
+- ✅ Poliçe yönetimi
+- ✅ Tazminat talep sistemi
+- ✅ Ödeme geçmişi
+- ✅ İletişim formu
+- ✅ Duyarlı tasarım (responsive)
+- ✅ Türkçe dil desteği
 
 ## 🔐 Güvenlik
 
-- PostgreSQL ile şifreler hash'leniyor
-- JWT token doğrulaması
-- CORS ayarları yapılandırıldı
-- Çevresel değişkenler korunuyor
+- Row Level Security (RLS) etkinleştirilmiş
+- HTTPS şifrelemesi
+- GDPR uyumlu
+- Güvenli parola yönetimi
 
-## 📞 İletişim
+## 📧 İletişim
 
-**MK Sigorta**
-- 📧 Email: info@mksigorta.dev
-- 🌐 Website: mksigorta.dev
-- 📍 Antalya, Türkiye
+info@mksigorta.dev
 
 ## 📄 Lisans
 
-Private Project - MK Sigorta
-
-## 👨‍💻 Geliştirici
-
-Copilot by GitHub
+MIT License
