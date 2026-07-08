@@ -1,173 +1,196 @@
-// User types
-export type UserType = 'customer' | 'admin' | 'agent';
-
+// User Types
 export interface User {
   id: string;
   email: string;
   full_name?: string;
   phone?: string;
+  address?: string;
+  city?: string;
+  postal_code?: string;
+  user_type: 'customer' | 'agent' | 'admin';
   company_name?: string;
   tax_id?: string;
-  address?: string;
-  city: string;
-  postal_code?: string;
-  user_type: UserType;
-  avatar_url?: string;
+  is_active: boolean;
   created_at: string;
   updated_at: string;
 }
 
-// Insurance Product types
-export type InsuranceCategory = 'sağlık' | 'araç' | 'ev' | 'iş' | 'seyahat' | 'hayat' | 'dış_ticaret';
-
+// Insurance Product Types
 export interface InsuranceProduct {
   id: string;
   name: string;
   description?: string;
-  category: InsuranceCategory;
+  category: 'sağlık' | 'araç' | 'ev' | 'iş' | 'seyahat' | 'hayat';
   base_price?: number;
-  coverage_details?: Record<string, any>;
-  features?: string[];
+  features: string[];
   image_url?: string;
   is_active: boolean;
   created_at: string;
   updated_at: string;
 }
 
-// Quote types
-export type QuoteStatus = 'draft' | 'sent' | 'accepted' | 'rejected' | 'expired';
-
+// Quote Types
 export interface Quote {
   id: string;
   user_id: string;
-  product_id?: string;
+  product_id: string;
   quote_number: string;
-  status: QuoteStatus;
+  status: 'draft' | 'sent' | 'accepted' | 'rejected' | 'expired';
   coverage_amount?: number;
   monthly_premium?: number;
   annual_premium?: number;
-  discount_percentage?: number;
-  final_price?: number;
-  details?: Record<string, any>;
+  details: Record<string, any>;
   valid_until?: string;
   created_at: string;
   updated_at: string;
+  insurance_products?: InsuranceProduct;
 }
 
-// Policy types
-export type PolicyStatus = 'active' | 'expired' | 'cancelled' | 'suspended';
-export type PaymentMethod = 'credit_card' | 'bank_transfer' | 'check';
-
+// Policy Types
 export interface Policy {
   id: string;
   user_id: string;
-  product_id?: string;
-  policy_number: string;
+  product_id: string;
   quote_id?: string;
-  status: PolicyStatus;
+  policy_number: string;
+  status: 'active' | 'expired' | 'cancelled' | 'suspended';
   coverage_amount?: number;
   monthly_premium?: number;
   annual_premium?: number;
   start_date?: string;
   end_date?: string;
-  renewal_date?: string;
-  payment_method?: PaymentMethod;
-  policy_document_url?: string;
+  payment_method?: 'credit_card' | 'bank_transfer' | 'auto_payment';
+  auto_renew: boolean;
+  details: Record<string, any>;
   created_at: string;
   updated_at: string;
+  insurance_products?: InsuranceProduct;
 }
 
-// Claim types
-export type ClaimStatus = 'pending' | 'approved' | 'rejected' | 'paid';
-
+// Claim Types
 export interface Claim {
   id: string;
   user_id: string;
-  policy_id?: string;
+  policy_id: string;
   claim_number: string;
-  claim_date?: string;
-  incident_date?: string;
+  claim_date: string;
+  status: 'pending' | 'approved' | 'rejected' | 'paid';
   description?: string;
   amount_claimed?: number;
   amount_approved?: number;
-  status: ClaimStatus;
-  attachment_urls?: string[];
+  amount_paid?: number;
+  payment_date?: string;
+  documents: Record<string, any>[];
   notes?: string;
   created_at: string;
   updated_at: string;
+  policies?: Policy;
 }
 
-// Payment types
-export type PaymentStatus = 'pending' | 'completed' | 'failed' | 'cancelled';
-
+// Payment Types
 export interface Payment {
   id: string;
   user_id: string;
-  policy_id?: string;
+  policy_id: string;
   amount: number;
+  payment_method?: 'credit_card' | 'bank_transfer' | 'check';
   payment_date?: string;
-  payment_method?: PaymentMethod;
+  status: 'pending' | 'completed' | 'failed' | 'cancelled';
   transaction_id?: string;
-  status: PaymentStatus;
-  invoice_url?: string;
+  notes?: string;
   created_at: string;
   updated_at: string;
+  policies?: Policy;
 }
 
-// Contact Message types
-export type MessageStatus = 'new' | 'read' | 'replied';
-
+// Contact Message Types
 export interface ContactMessage {
   id: string;
   name: string;
   email: string;
   phone?: string;
-  subject?: string;
+  subject: string;
   message: string;
-  status: MessageStatus;
-  reply?: string;
+  status: 'new' | 'read' | 'responded' | 'closed';
+  response?: string;
+  responded_at?: string;
   created_at: string;
   updated_at: string;
 }
 
-// Admin Settings
-export interface AdminSetting {
+// Document Types
+export interface Document {
   id: string;
-  setting_key: string;
-  setting_value?: string;
-  description?: string;
-  updated_by?: string;
+  user_id: string;
+  policy_id?: string;
+  claim_id?: string;
+  document_type: 'policy_document' | 'claim_document' | 'payment_proof';
+  document_url: string;
+  document_name?: string;
+  file_size?: number;
+  mime_type?: string;
   created_at: string;
-  updated_at: string;
 }
 
-// Form types
-export interface QuoteRequestForm {
-  product_id: string;
-  coverage_amount?: number;
-  full_name: string;
+// Audit Log Types
+export interface AuditLog {
+  id: string;
+  user_id?: string;
+  action: string;
+  entity_type?: 'user' | 'policy' | 'claim' | 'payment';
+  entity_id?: string;
+  changes: Record<string, any>;
+  created_at: string;
+}
+
+// Form Types
+export interface LoginFormData {
   email: string;
-  phone: string;
+  password: string;
+}
+
+export interface RegisterFormData {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  full_name: string;
+  phone?: string;
   address?: string;
   city?: string;
   postal_code?: string;
-  company_name?: string;
-  tax_id?: string;
 }
 
-export interface ClaimForm {
+export interface QuoteFormData {
+  product_id: string;
+  coverage_amount: number;
+  details: Record<string, any>;
+}
+
+export interface ClaimFormData {
   policy_id: string;
   claim_date: string;
-  incident_date: string;
   description: string;
   amount_claimed: number;
-  attachments?: File[];
 }
 
-export interface ContactForm {
+export interface ContactFormData {
   name: string;
   email: string;
   phone?: string;
   subject: string;
   message: string;
+}
+
+// API Response Types
+export interface ApiResponse<T> {
+  data?: T;
+  error?: string;
+  message?: string;
+}
+
+export interface PaginatedResponse<T> {
+  data: T[];
+  total: number;
+  page: number;
+  limit: number;
 }
