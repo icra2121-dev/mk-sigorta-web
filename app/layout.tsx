@@ -1,11 +1,16 @@
 import type { Metadata } from 'next';
+import { AuthProvider } from '@/contexts/AuthContext';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'MK Sigorta - Antalya Sigortacılık Hizmetleri',
-  description: 'Sağlık, araç, ev, iş, seyahat ve tüm sigorta ürünleri için güvenilir çözümler. Antalya\'da 24/7 sigorta hizmetleri.',
-  keywords: 'sigorta, sağlık sigortası, araç sigortası, ev sigortası, iş sigortası, Antalya',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  title: 'MK Sigorta - Güvenilir Sigorta Çözümleri',
+  description:
+    'MK Sigorta ile sağlık, araç, ev, iş ve hayat sigortası alın. Hızlı, güvenli ve uygun fiyatlı sigorta çözümleri.',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
@@ -15,14 +20,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="tr">
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#1e40af" />
-        <link rel="icon" href="/favicon.ico" />
-      </head>
-      <body className="bg-white text-gray-900">
-        {children}
+      <body>
+        <AuthProvider>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );
