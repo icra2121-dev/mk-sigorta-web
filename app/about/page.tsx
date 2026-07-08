@@ -1,93 +1,191 @@
 'use client';
 
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Card from '@/components/Card';
+import { Users, Award, Clock, Target } from 'lucide-react';
 
 export default function AboutPage() {
   return (
-    <>
-      <Header />
-      <main>
-        {/* Page Header */}
-        <section className="bg-primary text-white py-12">
-          <div className="container">
-            <h1 className="text-4xl font-bold mb-2">Hakkımızda</h1>
-            <p className="text-lg">MK Sigorta'nın hikayesi</p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <h1 className="text-5xl font-bold mb-4">Hakkımızda</h1>
+          <p className="text-xl text-blue-100">
+            15 yılı aşkın deneyimi ile Türkiye'nin güvenilir sigorta şirketi
+          </p>
+        </div>
+      </section>
+
+      {/* Mission Vision Values */}
+      <section className="py-20">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            <Card className="border-t-4 border-t-blue-600">
+              <div className="flex items-center gap-4 mb-4">
+                <Target className="text-blue-600" size={32} />
+                <h3 className="text-2xl font-bold">Misyonumuz</h3>
+              </div>
+              <p className="text-gray-600">
+                Her bireyin ve işletmenin finansal güvenliğini sağlamak, hayatının her aşamasında 
+                güvenilir sigorta hizmetleri sunmak.
+              </p>
+            </Card>
+
+            <Card className="border-t-4 border-t-purple-600">
+              <div className="flex items-center gap-4 mb-4">
+                <Award className="text-purple-600" size={32} />
+                <h3 className="text-2xl font-bold">Vizyonumuz</h3>
+              </div>
+              <p className="text-gray-600">
+                Türkiye'de en güvenilir, inovatif ve müşteri memnuniyeti yüksek sigorta şirketi olmak, 
+                teknoloji ve insan dokunuşunu birleştirmek.
+              </p>
+            </Card>
+
+            <Card className="border-t-4 border-t-green-600">
+              <div className="flex items-center gap-4 mb-4">
+                <Users className="text-green-600" size={32} />
+                <h3 className="text-2xl font-bold">Değerlerimiz</h3>
+              </div>
+              <p className="text-gray-600">
+                Güvenilirlik, şeffaflık, inovation ve müşteri odaklılık ile her zaman doğru hizmet sunuyoruz.
+              </p>
+            </Card>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* About Content */}
-        <section className="py-16">
-          <div className="container max-w-3xl">
-            <h2 className="text-3xl font-bold mb-6">Biz Kimiz?</h2>
-            <p className="text-gray-600 mb-6 leading-relaxed">
-              MK Sigorta, Antalya'da kurulmuş ve 15 yıldan fazla deneyime sahip güvenilir bir sigorta hizmeti sağlayıcısıdır. 
-              Müşterilerimizin finansal güvenliği ve huzuru bizim en önemli önceliğimizdir.
-            </p>
+      {/* Story Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-4xl font-bold mb-8 text-center">Bizim Hikayemiz</h2>
+          <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+            MK Sigorta, 2009 yılında Antalya'da kurulmuş ve kuruluşundan bu yana güvenilir sigorta hizmeti 
+            sunmaya devam etmektedir. Başlangıçta sadece küçük bir ofisle başlayan işletmemiz, 
+            müşteri memnuniyeti ve kaliteli hizmet anlayışı ile hızla büyümüştür.
+          </p>
 
-            <h2 className="text-3xl font-bold mb-6 mt-12">Misyonumuz</h2>
-            <p className="text-gray-600 mb-6 leading-relaxed">
-              Her bireyin ve işletmenin hayatının her aşamasında güvenilir sigorta hizmetleri sunmak, 
-              onların geleceğini korumak ve huzurlu bir yaşam sürmeleri için çalışmak.
-            </p>
+          <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+            Bugün 5000'den fazla müşteri tarafından tercih edilen şirketimiz, sağlık, otomotiv, 
+            konut ve ticari sigortada uzman hizmetler sunmaktadır. Teknoloji ve inovasyon kullanarak 
+            müşteri deneyimini her gün geliştiriyoruz.
+          </p>
 
-            <h2 className="text-3xl font-bold mb-6 mt-12">Vizyonumuz</h2>
-            <p className="text-gray-600 mb-6 leading-relaxed">
-              Antalya'da ve Türkiye'de en güvenilir, en inovatif ve müşteri memnuniyeti yüksek sigorta şirketi olmak. 
-              Teknoloji ve insan dokunuşunu birleştirerek hizmet kalitesini sürekli artırmak.
-            </p>
+          <p className="text-lg text-gray-600 leading-relaxed">
+            Geleceğte de aynı kararlılık ve dürüstlüğü ile hizmet vermeye, müşterilerimizin güvenini 
+            kazanmaya devam edeceğiz.
+          </p>
+        </div>
+      </section>
 
-            <h2 className="text-3xl font-bold mb-6 mt-12">Değerlerimiz</h2>
-            <ul className="space-y-3">
-              <li className="flex gap-3">
-                <span className="text-primary font-bold">✓</span>
-                <span className="text-gray-600"><strong>Güvenilirlik:</strong> Müşterilerimize her zaman doğru bilgi ve adil hizmet sunuyoruz.</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-primary font-bold">✓</span>
-                <span className="text-gray-600"><strong>Şeffaflık:</strong> Tüm işlemlerimiz açık, anlaşılır ve denetlenebilirdir.</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-primary font-bold">✓</span>
-                <span className="text-gray-600"><strong>İnovation:</strong> Teknoloji ve yeni çözümler ile hizmetlerimizi geliştirir, müşteri deneyimini artırırız.</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-primary font-bold">✓</span>
-                <span className="text-gray-600"><strong>Müşteri Odaklılık:</strong> Her müşteri için özel çözümler geliştiririz ve hızlı destek sağlarız.</span>
-              </li>
-            </ul>
-          </div>
-        </section>
+      {/* Why Choose Us */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <h2 className="text-4xl font-bold mb-12 text-center">Neden Bize Güvenebilirsiniz?</h2>
 
-        {/* Team Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="container">
-            <h2 className="text-3xl font-bold mb-12 text-center">Neden Bize Güvenebilirsiniz?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  title: '15+ Yıl Deneyim',
-                  desc: 'Antalya ve çevresinde sunduğumuz güvenilir sigorta hizmetleri.',
-                },
-                {
-                  title: '5000+ Müşteri',
-                  desc: 'Memnun müşterilerimiz her gün bize güveniyor.',
-                },
-                {
-                  title: '24/7 Destek',
-                  desc: 'Acil durumlarda anında müşteri hizmetleri desteği sağlıyoruz.',
-                },
-              ].map((item, idx) => (
-                <div key={idx} className="card p-8 text-center">
-                  <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                  <p className="text-gray-600">{item.desc}</p>
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {[
+              {
+                icon: <Award className="text-blue-600" size={40} />,
+                title: '15+ Yıl Deneyim',
+                description: 'Antalya ve çevresinde sunduğumuz güvenilir sigorta hizmeti ile milyonlarca kişinin güvenini kazandık.',
+              },
+              {
+                icon: <Users className="text-green-600" size={40} />,
+                title: '5000+ Memnun Müşteri',
+                description: 'Müşteri memnuniyeti bizim ilk önceliğimiz. Müşterilerimizin geri bildirimleri bize değer katar.',
+              },
+              {
+                icon: <Clock className="text-purple-600" size={40} />,
+                title: '24/7 Müşteri Destek',
+                description: 'Acil durumlarda hızlı ve etkili hizmet sunuyoruz. Sizin huzurunuz bizim önceliğimiz.',
+              },
+              {
+                icon: <Target className="text-orange-600" size={40} />,
+                title: 'Geniş Ürün Yelpazesi',
+                description: 'Sağlık, otomotiv, konut ve ticari sigortada kapsamlı çözümler sunuyoruz.',
+              },
+            ].map((item, idx) => (
+              <Card key={idx} className="flex gap-6">
+                <div className="flex-shrink-0">{item.icon}</div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                  <p className="text-gray-600">{item.description}</p>
                 </div>
-              ))}
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Values Detail */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <h2 className="text-4xl font-bold mb-12 text-center">Temel Değerlerimiz</h2>
+
+          <div className="space-y-8">
+            <div className="flex gap-6">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-blue-600 text-white font-bold">
+                  1
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2">Güvenilirlik</h3>
+                <p className="text-gray-600">
+                  Müşterilerimize her zaman doğru bilgi, adil hizmet ve anlaşılır politikalar sunuyoruz. 
+                  Söz verdiğimiz her şeyi yerine getiririz.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-6">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-purple-600 text-white font-bold">
+                  2
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2">Şeffaflık</h3>
+                <p className="text-gray-600">
+                  Tüm işlemlerimiz açık, anlaşılır ve denetlenebilirdir. Müşterilerimize hiçbir gizli 
+                  koşul veya hak kaybettirmeyiz.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-6">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-green-600 text-white font-bold">
+                  3
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2">İnovation</h3>
+                <p className="text-gray-600">
+                  Teknoloji ve yeni çözümlerle hizmetlerimizi geliştirir, müşteri deneyimini artırırız. 
+                  Dijital çağa uyum sağlamakta kararlıyız.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-6">
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-orange-600 text-white font-bold">
+                  4
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2">Müşteri Odaklılık</h3>
+                <p className="text-gray-600">
+                  Her müşteri için özel çözümler geliştiririz ve hızlı destek sağlarız. Sizin ihtiyaçlarınız 
+                  bizim tasarımımızın merkezindedir.
+                </p>
+              </div>
             </div>
           </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+        </div>
+      </section>
+    </div>
   );
 }
