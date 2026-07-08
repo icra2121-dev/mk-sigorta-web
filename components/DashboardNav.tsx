@@ -2,86 +2,39 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, FileText, AlertCircle, CreditCard, LogOut, Menu, X } from 'lucide-react';
-import { useState } from 'react';
 
-interface DashboardNavProps {
-  onLogout: () => void;
-}
-
-export default function DashboardNav({ onLogout }: DashboardNavProps) {
+export default function DashboardNav() {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
 
-  const isActive = (path: string) => pathname.startsWith(path);
+  const isActive = (path: string) => pathname === path;
 
-  const navItems = [
-    { href: '/dashboard', label: 'Pano', icon: LayoutDashboard },
-    { href: '/dashboard/policies', label: 'Poliçelerim', icon: FileText },
-    { href: '/dashboard/claims', label: 'Tazminat Talepleri', icon: AlertCircle },
-    { href: '/dashboard/payments', label: 'Ödemeler', icon: CreditCard },
+  const links = [
+    { href: '/dashboard', label: 'Anasayfa', icon: '🏠' },
+    { href: '/dashboard/policies', label: 'Poliçelerim', icon: '📋' },
+    { href: '/dashboard/claims', label: 'Tazminatlar', icon: '📝' },
+    { href: '/dashboard/payments', label: 'Ödemeler', icon: '💳' },
+    { href: '/dashboard/documents', label: 'Belgeler', icon: '📄' },
+    { href: '/dashboard/profile', label: 'Profilim', icon: '👤' },
   ];
 
   return (
-    <>
-      {/* Mobile Menu Button */}
-      <button
-        className="fixed top-20 left-4 md:hidden z-40 bg-primary text-white p-2 rounded-lg"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
-
-      {/* Sidebar */}
-      <aside
-        className={`fixed md:static left-0 top-16 h-screen w-64 bg-gray-900 text-white p-6 transform transition-transform md:translate-x-0 z-30 ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
-      >
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold">Panel</h2>
-        </div>
-
-        <nav className="space-y-2 mb-8">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition ${
-                  isActive(item.href)
-                    ? 'bg-primary text-white'
-                    : 'text-gray-300 hover:bg-gray-800'
-                }`}
-              >
-                <Icon size={20} />
-                <span>{item.label}</span>
-              </Link>
-            );
-          })}
-        </nav>
-
-        <button
-          onClick={() => {
-            setIsOpen(false);
-            onLogout();
-          }}
-          className="w-full flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-red-900 rounded-lg transition"
-        >
-          <LogOut size={20} />
-          <span>Çıkış Yap</span>
-        </button>
-      </aside>
-
-      {/* Overlay for mobile */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 md:hidden z-20"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
-    </>
+    <nav className="bg-white rounded-lg shadow-md p-4 mb-6 border-l-4 border-blue-600">
+      <div className="flex flex-wrap gap-2 md:flex-col md:gap-1">
+        {links.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className={`px-4 py-2 rounded-lg transition ${
+              isActive(link.href)
+                ? 'bg-blue-600 text-white'
+                : 'text-gray-700 hover:bg-gray-100'
+            }`}
+          >
+            <span className="mr-2">{link.icon}</span>
+            {link.label}
+          </Link>
+        ))}
+      </div>
+    </nav>
   );
 }

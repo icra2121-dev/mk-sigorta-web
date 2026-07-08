@@ -1,72 +1,104 @@
 'use client';
 
 import Link from 'next/link';
-import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-white py-12">
-      <div className="container">
+    <footer className="bg-gray-900 text-gray-300 mt-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          {/* About */}
+          {/* Company Info */}
           <div>
-            <h3 className="font-bold text-lg mb-4">MK Sigorta</h3>
-            <p className="text-gray-400">Antalya'da güvenilir sigorta hizmetleri sunan lider kuruluş.</p>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold">MK</span>
+              </div>
+              <span className="font-bold text-white">MK Sigorta</span>
+            </div>
+            <p className="text-sm">Türkiye'nin en güvenilir sigorta şirketi</p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Hızlı Bağlantılar</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li><Link href="/" className="hover:text-white transition">Anasayfa</Link></li>
-              <li><Link href="/products" className="hover:text-white transition">Ürünler</Link></li>
-              <li><Link href="/quote" className="hover:text-white transition">Teklif Al</Link></li>
-              <li><Link href="/about" className="hover:text-white transition">Hakkımızda</Link></li>
+            <h4 className="font-bold text-white mb-4">Hızlı Bağlantılar</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/" className="hover:text-white transition">
+                  Anasayfa
+                </Link>
+              </li>
+              <li>
+                <Link href="/products" className="hover:text-white transition">
+                  Ürünler
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-white transition">
+                  Hakkımızda
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-white transition">
+                  İletişim
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Products */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Sigorta Ürünleri</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li><Link href="/products?category=sağlık" className="hover:text-white transition">Sağlık Sigortası</Link></li>
-              <li><Link href="/products?category=araç" className="hover:text-white transition">Araç Sigortası</Link></li>
-              <li><Link href="/products?category=ev" className="hover:text-white transition">Ev Sigortası</Link></li>
-              <li><Link href="/products?category=iş" className="hover:text-white transition">İş Sigortası</Link></li>
+            <h4 className="font-bold text-white mb-4">Ürünler</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/products?category=sağlık" className="hover:text-white transition">
+                  Sağlık Sigortası
+                </Link>
+              </li>
+              <li>
+                <Link href="/products?category=araç" className="hover:text-white transition">
+                  Araç Sigortası
+                </Link>
+              </li>
+              <li>
+                <Link href="/products?category=ev" className="hover:text-white transition">
+                  Ev Sigortası
+                </Link>
+              </li>
+              <li>
+                <Link href="/products?category=hayat" className="hover:text-white transition">
+                  Hayat Sigortası
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Legal */}
           <div>
-            <h3 className="font-bold text-lg mb-4">İletişim</h3>
-            <ul className="space-y-3 text-gray-400">
-              <li className="flex gap-2">
-                <Phone size={18} />
-                <span>+90 (242) XXX XX XX</span>
+            <h4 className="font-bold text-white mb-4">Yasal</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link href="/privacy" className="hover:text-white transition">
+                  Gizlilik Politikası
+                </Link>
               </li>
-              <li className="flex gap-2">
-                <Mail size={18} />
-                <span>info@mksigorta.dev</span>
+              <li>
+                <Link href="/terms" className="hover:text-white transition">
+                  Kullanım Şartları
+                </Link>
               </li>
-              <li className="flex gap-2">
-                <MapPin size={18} />
-                <span>Antalya, Türkiye</span>
+              <li>
+                <Link href="/contact" className="hover:text-white transition">
+                  İletişim Bilgileri
+                </Link>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="border-t border-gray-800 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center text-gray-400">
-            <p>&copy; {currentYear} MK Sigorta. Tüm hakları saklıdır.</p>
-            <div className="flex gap-6 mt-4 md:mt-0">
-              <Link href="/privacy" className="hover:text-white transition">Gizlilik Politikası</Link>
-              <Link href="/terms" className="hover:text-white transition">Kullanım Şartları</Link>
-            </div>
-          </div>
+        <div className="border-t border-gray-800 pt-8 text-center text-sm">
+          <p>&copy; {currentYear} MK Sigorta. Tüm hakları saklıdır.</p>
         </div>
       </div>
     </footer>
