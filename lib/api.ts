@@ -54,6 +54,17 @@ export async function resetPassword(email: string) {
   if (error) throw error;
 }
 
+// Get Current User
+export async function getCurrentUser() {
+  const { data: { user }, error } = await supabase.auth.getUser();
+  
+  if (error || !user) {
+    return null;
+  }
+  
+  return user;
+}
+
 // User Functions
 export async function getUserProfile(userId: string) {
   const { data, error } = await supabase
