@@ -1,12 +1,7 @@
-'use client';
-
 import Link from 'next/link';
-import { useAuth } from '@/contexts/AuthContext';
 import Button from '@/components/Button';
 
 export default function Home() {
-  const { user } = useAuth();
-
   return (
     <>
       {/* Hero Section */}
@@ -19,9 +14,9 @@ export default function Home() {
                 MK Sigorta ile sağlık, araç, ev, iş ve hayat sigortası al. Hızlı, güvenli ve uygun
                 fiyatlı çözümler.
               </p>
-              <Link href={user ? '/dashboard' : '/auth/login'}>
+              <Link href="/auth/login">
                 <Button size="lg">
-                  {user ? 'Dashboard\'a Git' : 'Başla'}
+                  Başla
                 </Button>
               </Link>
             </div>
@@ -88,7 +83,7 @@ export default function Home() {
         <div className="container mx-auto px-4 max-w-6xl text-center">
           <h2 className="text-4xl font-bold mb-8">Hemen Başlayın</h2>
           <p className="text-xl mb-8">5 dakika içinde sigorta al ve hemen koruma altına gir</p>
-          <Link href={user ? '/quotes' : '/auth/register'}>
+          <Link href="/auth/register">
             <Button className="bg-white text-blue-600 hover:bg-gray-100">
               Ücretsiz Teklif Al
             </Button>
