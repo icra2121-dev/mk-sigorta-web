@@ -3,7 +3,11 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-export default function DashboardNav() {
+interface DashboardNavProps {
+  onLogout: () => Promise<void>;
+}
+
+export default function DashboardNav({ onLogout }: DashboardNavProps) {
   const pathname = usePathname();
 
   const isActive = (path: string) => pathname === path;
@@ -17,9 +21,13 @@ export default function DashboardNav() {
     { href: '/dashboard/profile', label: 'Profilim', icon: '👤' },
   ];
 
+  const handleLogout = async () => {
+    await onLogout();
+  };
+
   return (
     <nav className="bg-white rounded-lg shadow-md p-4 mb-6 border-l-4 border-blue-600">
-      <div className="flex flex-wrap gap-2 md:flex-col md:gap-1">
+      <div className="flex flex-col gap-1">
         {links.map((link) => (
           <Link
             key={link.href}
@@ -34,6 +42,13 @@ export default function DashboardNav() {
             {link.label}
           </Link>
         ))}
+        <button
+          onClick={handleLogout}
+          className="px-4 py-2 rounded-lg text-gray-700 hover:bg-red-100 hover:text-red-700 transition text-left"
+        >
+          <span className="mr-2">🚪</span>
+          Çıkış Yap
+        </button>
       </div>
     </nav>
   );
