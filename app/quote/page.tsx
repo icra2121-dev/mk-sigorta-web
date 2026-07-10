@@ -38,7 +38,6 @@ export default function QuotePage() {
     handleSubmit,
     formState: { errors },
     watch,
-    setValue,
   } = useForm<QuoteFormData>({
     resolver: zodResolver(quoteSchema),
     defaultValues: {
