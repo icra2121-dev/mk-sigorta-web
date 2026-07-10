@@ -48,7 +48,7 @@ export default function FAQPage() {
         },
         {
           question: 'Otomotiv sigortası fiyatlarında indirim var mı?',
-          answer: 'Evet, çeşitli indirim seçeneklerimiz bulunmaktadır. Yıllık ödeme, çoklu sigorta paketleri ve iyi sürücü indirimlerinden yararlanabilirsiniz. Detaylı bilgi için danışmanlarımızla iletişime geçin.',
+          answer: 'Evet, çeşitli indirim seçeneklerimiz bulunmaktadır. Yıllık ödeme, çoklu sigorta paketleri ve iyi sürücü indirimlerinden yararlanabilirsiniz. Detaylı bilgi için danışmanlarımızla iletişime geçiniz.',
         },
         {
           question: 'Poliçe iptal edebilir miyim?',
@@ -86,7 +86,7 @@ export default function FAQPage() {
         },
         {
           question: 'Hasar talebinde hangi belgeler gerekli?',
-          answer: 'Hasarın türüne göre değişmek üzere, poliçe numarası, kimlik fotokopisi, hasara ilişkin fotoğraflar ve ilgili raporlar gerekmektedir. Detaylı listeyi danışmanlarımız size bildirirler.',
+          answer: 'Hasarın türüne göre değişmek üzere, poliçe numarası, kimlik fotokopisi, hasara ilişkin fotoğraflar ve ilgili raporlar gerekmektedir. Detaylı listeyi danışmanlarımızdan alabilirsiniz.',
         },
         {
           question: 'Hasar talebinin sonuçlanması ne kadar sürer?',
@@ -94,7 +94,7 @@ export default function FAQPage() {
         },
         {
           question: 'Hasar talebi reddedilebilir mi?',
-          answer: 'Poliçe koşullarına uygun hasar talepleri reddedilmez. Ancak poliçe dışı durumlar, ihmal veya kasıtlı hasarlar kapsam dışındadır. Detaylı bilgi için poliçe şartlarını okuyunuz.',
+          answer: 'Poliçe koşullarına uygun hasar talepleri reddedilmez. Ancak poliçe dışı durumlar, ihmal veya kasıtlı hasarlar kapsam dışındadır. Detaylı bilgi için poliçe şartlarını inceleyiniz.',
         },
       ],
     },
@@ -226,30 +226,32 @@ export default function FAQPage() {
                   {category.questions.map((item, idx) => {
                     const itemId = `${category.category}-${idx}`;
                     return (
-                      <Card
+                      <div
                         key={itemId}
                         className="cursor-pointer hover:shadow-lg transition"
                         onClick={() => toggleExpanded(itemId)}
                       >
-                        <div className="flex items-start justify-between gap-4">
-                          <div className="flex-1">
-                            <h4 className="font-semibold text-lg text-gray-800">
-                              {item.question}
-                            </h4>
-                            {expandedId === itemId && (
-                              <p className="text-gray-600 mt-3 leading-relaxed">
-                                {item.answer}
-                              </p>
-                            )}
+                        <Card className="h-full">
+                          <div className="flex items-start justify-between gap-4">
+                            <div className="flex-1">
+                              <h4 className="font-semibold text-lg text-gray-800">
+                                {item.question}
+                              </h4>
+                              {expandedId === itemId && (
+                                <p className="text-gray-600 mt-3 leading-relaxed">
+                                  {item.answer}
+                                </p>
+                              )}
+                            </div>
+                            <ChevronDown
+                              size={24}
+                              className={`text-blue-600 flex-shrink-0 transition ${
+                                expandedId === itemId ? 'rotate-180' : ''
+                              }`}
+                            />
                           </div>
-                          <ChevronDown
-                            size={24}
-                            className={`text-blue-600 flex-shrink-0 transition ${
-                              expandedId === itemId ? 'rotate-180' : ''
-                            }`}
-                          />
-                        </div>
-                      </Card>
+                        </Card>
+                      </div>
                     );
                   })}
                 </div>
