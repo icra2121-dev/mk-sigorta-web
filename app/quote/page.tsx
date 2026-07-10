@@ -70,24 +70,26 @@ export default function QuotePage() {
   const onSubmit = async (data: QuoteFormData) => {
     setLoading(true);
     try {
-      const quoteNumber = `QT-${Date.now()}`;
-
-      await createQuote({
-        user_id: '', // Will be set by user after authentication
-        product_id: data.product_id,
-        quote_number: quoteNumber,
-        status: 'draft',
-        coverage_amount: data.coverage_amount,
-        monthly_premium: selectedProduct?.base_price,
-        annual_premium: selectedProduct?.base_price ? selectedProduct.base_price * 12 : undefined,
-        details: {
-          customer_name: data.full_name,
-          customer_email: data.email,
-          customer_phone: data.phone,
-          company_name: data.company_name,
-          tax_id: data.tax_id,
-        },
-      });
+      await createQuote(
+        '', // user_id - Will be set by user after authentication
+        data.product_id,
+        {
+          status: 'draft',
+          coverage_amount: data.coverage_amount,
+          monthly_premium: selectedProduct?.base_price,
+          annual_premium: selectedProduct?.base_price ? selectedProduct.base_price * 12 : undefined,
+          details: {
+            customer_name: data.full_name,
+            customer_email: data.email,
+            customer_phone: data.phone,
+            customer_address: data.address,
+            customer_city: data.city,
+            customer_postal_code: data.postal_code,
+            company_name: data.company_name,
+            tax_id: data.tax_id,
+          },
+        }
+      );
 
       setSuccess(true);
       setTimeout(() => {
@@ -225,6 +227,17 @@ export default function QuotePage() {
                     defaultValue="Antalya"
                   />
                 </div>
+              </div>
+
+              {/* Postal Code */}
+              <div className="mb-6">
+                <label className="block text-sm font-bold mb-2">Posta Kodu</label>
+                <input
+                  type="text"
+                  {...register('postal_code')}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                  placeholder="Posta kodu"
+                />
               </div>
 
               {/* Company Information (Optional) */}
