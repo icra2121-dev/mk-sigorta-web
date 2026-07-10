@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -26,7 +26,7 @@ const quoteSchema = z.object({
 
 type QuoteFormData = z.infer<typeof quoteSchema>;
 
-export default function QuotePage() {
+function QuotePageContent() {
   const searchParams = useSearchParams();
   const productId = searchParams.get('product');
   const [products, setProducts] = useState<InsuranceProduct[]>([]);
@@ -278,5 +278,13 @@ export default function QuotePage() {
       </main>
       <Footer />
     </>
+  );
+}
+
+export default function QuotePage() {
+  return (
+    <Suspense fallback={<div>Yükleniyor...</div>}>
+      <QuotePageContent />
+    </Suspense>
   );
 }
