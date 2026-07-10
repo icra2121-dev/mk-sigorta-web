@@ -9,7 +9,7 @@ import { createQuote } from '@/lib/api';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { supabase } from '@/lib/supabase';
-import { InsuranceProduct, QuoteRequestForm } from '@/types';
+import { InsuranceProduct } from '@/types';
 
 const quoteSchema = z.object({
   product_id: z.string().min(1, 'Ürün seçimi zorunludur'),
