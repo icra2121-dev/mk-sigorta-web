@@ -9,7 +9,6 @@ import DashboardNav from '@/components/DashboardNav';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,8 +17,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         const currentUser = await getCurrentUser();
         if (!currentUser) {
           router.push('/login');
-        } else {
-          setUser(currentUser);
         }
       } catch (error) {
         router.push('/login');
